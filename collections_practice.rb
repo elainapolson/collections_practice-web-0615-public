@@ -86,6 +86,9 @@ def count_words(story)
   end
 end
 
+
+
+
 # def organize_songs_by_artist(songs)
 #   songs_array = songs.collect do |song|
 #     song.split(" - ")
@@ -101,32 +104,18 @@ end
 # end
 
 
-# def organize_songs_by_artist(songs)
-#   songs_array = songs.collect do |song|
-#     song.split(" - ")
-#   end
-  
-#   hash = {}
-  
-#   songs_array.each do |song|
-#     if hash[songs_array[0]] == nil
-#       hash[songs_array[0]] = songs_array[1]
-#     else
-#       hash[songs_array[0]] << songs_array[1]
-#     end
-#   end
-#   hash
-# end
-
-def organize_songs_by_artist(array)
-  artist_hash = {}
-  array.each do |song|
-    song_info = song.split(' - ')
-    if artist_hash.has_key?(song_info[0])
-      artist_hash[song_info[0]] << song_info[1]
+def organize_songs_by_artist(songs)
+  songs_array = songs.collect do |song|
+    song.split(" - ")
+  end
+  songs_array.each_with_object(Hash.new(0)) do |song_information, hash|
+    if hash.has_key?(song_information[0]) 
+      hash[song_information[0]] << song_information[1]
     else
-      artist_hash[song_info[0]] = [song_info[1]]
+      hash[song_information[0]] = [song_information[1]]
     end
   end
-  artist_hash
 end
+
+
+
